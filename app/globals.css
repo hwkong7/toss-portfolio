@@ -24,3 +24,46 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ---- 인쇄(PDF 제출용) ---- */
+@media print {
+  /* 배경색을 그대로 인쇄한다 (브라우저 기본은 배경 제거) */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+  }
+
+  /* 화면 전용 요소 숨김 */
+  .print-hidden {
+    display: none !important;
+  }
+
+  /* 섹션이 페이지 경계에서 잘리지 않도록 */
+  .print-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-page-break {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  /* 링크는 주소를 함께 노출해야 종이에서도 확인 가능 */
+  .print-url::after {
+    content: " (" attr(href) ")";
+    font-size: 10px;
+    color: #6b7280;
+    word-break: break-all;
+  }
+}

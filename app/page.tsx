@@ -174,7 +174,7 @@ export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen bg-[#F9FAFB] text-[#191F28] font-sans antialiased">
-      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 px-6 py-4">
+      <header className="print-hidden sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 px-6 py-4">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
           <span className="font-bold text-lg tracking-tight text-[#1B64DA]">신혜원.dev</span>
           <nav className="flex gap-6 text-sm font-medium text-gray-600">
@@ -206,14 +206,14 @@ export default function PortfolioPage() {
               href="https://github.com/hwkong7" 
               target="_blank" 
               rel="noreferrer" 
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition"
+              className="print-url inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               GitHub
             </a>
             <a 
               href="mailto:lime040909@gmail.com" 
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition"
+              className="print-url inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition"
             >
               <Mail className="w-4 h-4" /> Email Contact
             </a>
@@ -223,7 +223,7 @@ export default function PortfolioPage() {
         <section id="core-values" className="space-y-6">
           <h2 className="text-2xl font-bold tracking-tight">Core Engineering Values</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-3">
+            <div className="print-block p-6 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-3">
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#3182F6] flex items-center justify-center">
                 <Bug className="w-5 h-5" />
               </div>
@@ -233,7 +233,7 @@ export default function PortfolioPage() {
               </p>
             </div>
 
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-3">
+            <div className="print-block p-6 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-3">
               <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
                 <Layers className="w-5 h-5" />
               </div>
@@ -243,7 +243,7 @@ export default function PortfolioPage() {
               </p>
             </div>
 
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-3">
+            <div className="print-block p-6 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-3">
               <div className="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center">
                 <FileText className="w-5 h-5" />
               </div>
@@ -253,7 +253,7 @@ export default function PortfolioPage() {
               </p>
             </div>
 
-            <div className="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-3">
+            <div className="print-block p-6 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-3">
               <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
                 <Terminal className="w-5 h-5" />
               </div>
@@ -268,10 +268,10 @@ export default function PortfolioPage() {
         <section id="projects" className="space-y-6">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">Featured Projects</h2>
-            <p className="text-sm text-gray-500">프로젝트 카드를 클릭하면 상세 트러블슈팅과 해결 과정을 볼 수 있습니다.</p>
+            <p className="print-hidden text-sm text-gray-500">프로젝트 카드를 클릭하면 상세 트러블슈팅과 해결 과정을 볼 수 있습니다.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="print-hidden grid md:grid-cols-2 gap-6">
             {projects.map((p) => (
               <button
                 key={p.id}
@@ -311,12 +311,58 @@ export default function PortfolioPage() {
               </button>
             ))}
           </div>
+          {/* 인쇄(PDF)에서는 모달을 열 수 없으므로 상세 내용을 펼쳐서 출력한다 */}
+          <div className="hidden print:block space-y-5">
+            {projects.map((p) => (
+              <article key={p.id} className="print-block border border-gray-200 rounded-xl p-5 space-y-3">
+                <div className="flex items-baseline justify-between gap-3">
+                  <h3 className="text-lg font-bold text-gray-900">{p.title}</h3>
+                  <span className="text-xs text-gray-500">{p.period}</span>
+                </div>
+                <p className="text-sm text-gray-600">
+                  {p.subtitle}
+                  {p.badge ? ` · ${p.badge}` : ''}
+                </p>
+                <p className="text-sm text-gray-800 leading-relaxed">{p.summary}</p>
+
+                <p className="text-xs text-gray-700">
+                  <span className="font-bold">담당 역할 </span>
+                  {p.role}
+                </p>
+
+                <div className="flex flex-wrap gap-1">
+                  {p.techStack.map((tech) => (
+                    <span key={tech} className="text-[10px] px-1.5 py-0.5 bg-gray-100 text-gray-700 rounded">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <ul className="list-disc list-outside pl-4 text-xs text-gray-700 space-y-1">
+                  {p.details.map((d, idx) => (
+                    <li key={idx} className="leading-relaxed">{d}</li>
+                  ))}
+                </ul>
+
+                {p.troubleshooting?.map((t, idx) => (
+                  <div key={idx} className="bg-blue-50/60 border border-blue-100 rounded-lg p-3 space-y-1">
+                    <p className="text-xs font-bold text-[#3182F6]">문제 해결 · {t.title}</p>
+                    <p className="text-[11px] text-gray-700 leading-relaxed">{t.desc}</p>
+                  </div>
+                ))}
+
+                {p.githubUrl && (
+                  <p className="text-[10px] text-gray-500 break-all">Repository: {p.githubUrl}</p>
+                )}
+              </article>
+            ))}
+          </div>
         </section>
 
         <section id="troubleshooting" className="space-y-6">
           <h2 className="text-2xl font-bold tracking-tight">Real-World Troubleshooting Logs</h2>
           <div className="bg-white rounded-2xl border border-gray-100 p-6 space-y-6">
-            <div className="border-b border-gray-100 pb-4 space-y-2">
+            <div className="print-block border-b border-gray-100 pb-4 space-y-2">
               <span className="text-xs font-bold text-red-500 uppercase tracking-wider">Case 01. Debugging</span>
               <h3 className="font-bold text-lg">Android Logcat 로그 분석 기반의 앱 반복 종료 원인 규명</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
@@ -325,7 +371,7 @@ export default function PortfolioPage() {
               </p>
             </div>
 
-            <div className="border-b border-gray-100 pb-4 space-y-2">
+            <div className="print-block border-b border-gray-100 pb-4 space-y-2">
               <span className="text-xs font-bold text-blue-500 uppercase tracking-wider">Case 02. Git & Version Control</span>
               <h3 className="font-bold text-lg">Git Merge 오류 격리 분석 및 브랜치 재구성</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
@@ -334,7 +380,7 @@ export default function PortfolioPage() {
               </p>
             </div>
 
-            <div className="space-y-2">
+            <div className="print-block space-y-2">
               <span className="text-xs font-bold text-purple-500 uppercase tracking-wider">Case 03. Error Handling</span>
               <h3 className="font-bold text-lg">장애 원인이 화면에서 구분되지 않던 문제</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
@@ -419,7 +465,7 @@ export default function PortfolioPage() {
         </div>
       )}
 
-      <footer className="border-t border-gray-100 py-8 text-center text-xs text-gray-400">
+      <footer className="print-hidden border-t border-gray-100 py-8 text-center text-xs text-gray-400">
         © 2026 Shin Hyewon. Built with React & Tailwind CSS.
       </footer>
     </div>
