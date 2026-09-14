@@ -84,7 +84,7 @@ export default function PortfolioPage() {
       <header className="print-hidden sticky top-0 z-40 border-b border-[#F2F4F6] bg-white/85 px-6 py-4 backdrop-blur-md">
         <div className="mx-auto flex max-w-4xl items-center justify-between">
           <span className="text-[15px] font-bold tracking-tight">신혜원 포트폴리오</span>
-          <nav className="flex gap-5 text-[14px] font-medium text-[#8B95A1]">
+          <nav className="hidden gap-5 text-[14px] font-medium text-[#8B95A1] sm:flex">
             <a href="#about" className="transition-colors hover:text-[#191F28]">소개</a>
             <a href="#values" className="transition-colors hover:text-[#191F28]">일하는 방식</a>
             <a href="#projects" className="transition-colors hover:text-[#191F28]">프로젝트</a>
@@ -96,12 +96,12 @@ export default function PortfolioPage() {
       <main className="mx-auto max-w-4xl px-6 pb-24">
         {/* 소개 */}
         <section id="about" className="print-block grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
+          <div className="min-w-0">
           <p className="rise text-[15px] font-semibold text-[#3182F6]">Frontend Developer</p>
 
           <h1
             style={{ animationDelay: '0.08s' }}
-            className="rise mt-4 text-[38px] font-extrabold leading-[1.28] tracking-[-0.03em] sm:text-[52px]"
+            className="rise mt-4 text-[28px] font-extrabold leading-[1.3] tracking-[-0.03em] break-keep sm:text-[38px] md:text-[52px]"
           >
             복잡한 요구사항을
             <br />
@@ -133,7 +133,7 @@ export default function PortfolioPage() {
           </div>
           </div>
 
-          <div style={{ animationDelay: '0.3s' }} className="rise print-block">
+          <div style={{ animationDelay: '0.3s' }} className="rise print-block min-w-0">
             <ProjectCollage />
           </div>
         </section>
@@ -172,7 +172,7 @@ export default function PortfolioPage() {
                 onClick={() => setSelected(p)}
                 aria-label={`${p.title} 상세 보기`}
                 style={{ animationDelay: `${i * 0.05}s` }}
-                className="rise rise-scroll group flex w-full flex-col rounded-2xl bg-white p-7 text-left shadow-[0_1px_3px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.04)] transition-[box-shadow,transform] duration-200 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.10)] active:translate-y-0 active:scale-[0.985] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3182F6] focus-visible:ring-offset-2"
+                className="rise rise-scroll group flex w-full min-w-0 flex-col rounded-2xl bg-white p-7 text-left shadow-[0_1px_3px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.04)] transition-[box-shadow,transform] duration-200 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.10)] active:translate-y-0 active:scale-[0.985] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3182F6] focus-visible:ring-offset-2"
               >
                 <div className="print-hidden relative -mx-7 -mt-7 mb-6 h-[150px] overflow-hidden rounded-t-2xl">
                   {p.image ? (
@@ -382,7 +382,7 @@ function Section({
     <section id={id} className="border-t border-[#F2F4F6] py-14 sm:py-20">
       <div className="rise rise-scroll mb-8">
         <p className="text-[14px] font-semibold text-[#3182F6]">{eyebrow}</p>
-        <h2 className="mt-2 text-[28px] font-extrabold tracking-[-0.02em] sm:text-[32px]">{title}</h2>
+        <h2 className="mt-2 text-[24px] font-extrabold tracking-[-0.02em] break-keep sm:text-[32px]">{title}</h2>
       </div>
       {children}
     </section>
@@ -405,12 +405,12 @@ function CopyEmail() {
   };
 
   return (
-    <span className="inline-flex items-center gap-1 rounded-xl bg-[#F2F4F6] p-1">
+    <span className="inline-flex max-w-full flex-wrap items-center gap-1 rounded-xl bg-[#F2F4F6] p-1">
       <button
         type="button"
         onClick={copy}
         aria-label={`이메일 주소 ${EMAIL} 복사하기`}
-        className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-[15px] font-semibold text-[#4E5968] transition-colors hover:bg-white active:scale-[0.98]"
+        className="inline-flex max-w-full items-center gap-2 break-all rounded-lg px-4 py-2 text-left text-[14px] font-semibold text-[#4E5968] transition-colors hover:bg-white active:scale-[0.98] sm:text-[15px]"
       >
         {copied ? (
           <Check className="h-4 w-4 text-[#12A66B]" aria-hidden="true" />
@@ -447,7 +447,7 @@ function ProjectCollage() {
           <div
             key={p.id}
             style={{ animationDelay: `${0.35 + i * 0.07}s` }}
-            className={`rise overflow-hidden rounded-xl bg-white shadow-[0_4px_14px_rgba(20,40,80,0.10)] ${
+            className={`rise min-w-0 overflow-hidden rounded-xl bg-white shadow-[0_4px_14px_rgba(20,40,80,0.10)] ${
               i % 2 === 0 ? 'translate-y-0' : 'translate-y-4'
             }`}
           >
