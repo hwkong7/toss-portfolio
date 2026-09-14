@@ -39,6 +39,29 @@ const values = [
   },
 ];
 
+const credentials = [
+  {
+    year: '2026',
+    title: '한국정보기술학회 하계 종합학술대회 논문 게재',
+    detail: '「웹 서비스 보안 점검을 위한 CVE 기반 웹 취약점 진단 도구」 제2저자',
+  },
+  {
+    year: '2025',
+    title: '논문경진대회 은상',
+    detail: '',
+  },
+  {
+    year: '',
+    title: '네이버 부스트캠프 수료',
+    detail: '',
+  },
+  {
+    year: '',
+    title: '국립금오공과대학교 컴퓨터공학부',
+    detail: '재학',
+  },
+];
+
 const logs = [
   {
     tag: 'Debugging',
@@ -89,6 +112,7 @@ export default function PortfolioPage() {
             <a href="#values" className="transition-colors hover:text-[#191F28]">일하는 방식</a>
             <a href="#projects" className="transition-colors hover:text-[#191F28]">프로젝트</a>
             <a href="#logs" className="transition-colors hover:text-[#191F28]">문제 해결</a>
+            <a href="#credentials" className="transition-colors hover:text-[#191F28]">그 외 이력</a>
           </nav>
         </div>
       </header>
@@ -276,6 +300,24 @@ export default function PortfolioPage() {
               </div>
             ))}
           </div>
+        </Section>
+        {/* 교육 · 수상 */}
+        <Section id="credentials" eyebrow="Education & Awards" title="그 외 이력">
+          <ul className="divide-y divide-[#F2F4F6]">
+            {credentials.map((c) => (
+              <li key={c.title} className="print-block flex gap-4 py-4">
+                <span className="w-12 shrink-0 pt-0.5 text-[14px] font-semibold text-[#8B95A1]">
+                  {c.year}
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-[16px] font-bold">{c.title}</span>
+                  {c.detail && (
+                    <span className="mt-1 block text-[14px] leading-[1.6] text-[#4E5968]">{c.detail}</span>
+                  )}
+                </span>
+              </li>
+            ))}
+          </ul>
         </Section>
       </main>
 
