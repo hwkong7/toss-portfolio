@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 커버 합성에 쓴 원본 스크린샷 (배포 대상 아님)
+.originals/

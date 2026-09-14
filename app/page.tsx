@@ -231,7 +231,7 @@ export default function PortfolioPage() {
                 </p>
                 <p className="mt-2 text-[13px] leading-[1.7] text-[#191F28]">{p.summary}</p>
                 {p.image && (
-                  <img src={p.image} alt="" className="mt-3 w-full rounded-lg border border-[#E5E8EB]" />
+                  <img src={p.image} alt="" className="mt-3 w-[62%] rounded-lg border border-[#E5E8EB]" />
                 )}
                 <p className="mt-2 text-[12px] text-[#4E5968]">
                   <span className="font-bold">담당 역할 </span>

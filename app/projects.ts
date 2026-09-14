@@ -22,6 +22,7 @@ export const projects: Project[] = [
   {
     id: 'cve-poc-scanner',
     title: 'CVE-PoC-Scanner',
+    image: '/projects/cve.png',
     cover: 'from-[#E8F3FF] to-[#D6E9FF]',
     subtitle: 'CVE 기반 웹 취약점 자동 진단 도구',
     category: 'Capstone Design',
@@ -49,6 +50,7 @@ export const projects: Project[] = [
   {
     id: 'pansa',
     title: 'PANSA',
+    image: '/projects/pansa.png',
     cover: 'from-[#F3F1FF] to-[#E7E2FF]',
     subtitle: '익명 갈등 중재 및 정산 모바일 앱',
     category: 'Mobile App',
@@ -100,6 +102,7 @@ export const projects: Project[] = [
   {
     id: 'kgv',
     title: 'KGV (CGV 클론)',
+    image: '/projects/kgv.png',
     cover: 'from-[#FFF1F0] to-[#FFE0DE]',
     subtitle: '영화 예매 및 좌석 관리 모바일 앱',
     category: 'Mobile App',
@@ -131,6 +134,7 @@ export const projects: Project[] = [
   {
     id: 'gift-picker',
     title: 'Gift Picker',
+    image: '/projects/gift-picker.png',
     cover: 'from-[#FFF6E5] to-[#FFEAC2]',
     subtitle: '선물 추천 웹 서비스',
     category: 'Web Application',
