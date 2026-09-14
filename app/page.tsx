@@ -8,39 +8,52 @@ import { projects, type Project } from './projects';
 const values = [
   {
     icon: Bug,
+    label: 'Debugging',
     title: '원인을 근거로 좁혀갑니다',
     desc: '로그와 응답을 직접 확인해 지연인지, 단절인지, 상태가 꼬인 것인지 구분합니다. 추측으로 고치면 같은 문제가 다시 돌아온다고 생각합니다.',
-  },
-  {
-    icon: FlaskConical,
-    title: '실패하는 길을 먼저 덮습니다',
-    desc: '네트워크 오류 구분, 무효해진 로컬 상태 복구처럼 화면에서 재현하기 번거로운 로직을 테스트로 고정합니다.',
-  },
-  {
-    icon: FileText,
-    title: '만들기 전에 구조를 적습니다',
-    desc: 'API 명세와 데이터 흐름을 먼저 정리해 설계서로 남깁니다. 어떤 값이 어디서 와서 어디로 가는지 아는 상태에서 시작합니다.',
+    tone: 'bg-[#F4F8FF] text-[#3182F6]',
   },
   {
     icon: Layers,
-    title: '반복되는 판단은 컴포넌트로 만듭니다',
-    desc: '같은 처리를 여러 화면에 흩어두지 않고 한곳에서 관리합니다. 새 화면이 늘어날 때 참조할 기준이 생깁니다.',
+    label: 'Abstraction',
+    title: '반복되는 판단은 한곳으로 모읍니다',
+    desc: '같은 처리를 여러 화면에 흩어두면 화면이 늘어날수록 같은 고민을 반복하게 됩니다. 공통 훅이나 모듈로 옮겨 기준을 하나만 두려고 합니다.',
+    tone: 'bg-[#F3F1FF] text-[#7C5CFF]',
+  },
+  {
+    icon: FlaskConical,
+    label: 'Testing',
+    title: '실패하는 경로를 먼저 덮습니다',
+    desc: '네트워크 오류 구분, 무효해진 로컬 상태 복구처럼 화면에서 재현하기 번거로운 로직을 Vitest로 고정합니다.',
+    tone: 'bg-[#EDF9F0] text-[#12A66B]',
+  },
+  {
+    icon: FileText,
+    label: 'Documentation',
+    title: '만들기 전에 구조를 적습니다',
+    desc: 'API 명세와 데이터 흐름을 먼저 정리해 설계서로 남깁니다. 어떤 값이 어디서 와서 어디로 가는지 아는 상태에서 시작합니다.',
+    tone: 'bg-[#FFF6E5] text-[#F59E0B]',
   },
 ];
 
 const logs = [
   {
-    tag: '디버깅',
+    tag: 'Debugging',
     title: '앱이 반복해서 종료되던 원인 찾기',
     body: '실디바이스 테스트 중 앱이 계속 꺼졌지만 화면만으로는 원인을 알 수 없었습니다. Logcat 전체 로그를 모아 분석해 네트워크 요청 타이밍, 상태 초기화 누락, 잘못된 값 전달 예외 세 가지를 각각 확인하고 수정했습니다.',
   },
   {
-    tag: '버전 관리',
-    title: '병합이 실패하던 브랜치 재구성',
-    body: '긴 오류와 함께 merge가 되지 않아, 설정 문제인지 충돌인지부터 나눠서 재현 테스트를 했습니다. 어떤 방식에서 실패하는지 확인한 뒤 작업 단위를 정리한 새 브랜치로 옮겨 안전하게 병합했습니다.',
+    tag: 'Git',
+    title: '잘못된 병합 상태에서 작업 복구하기',
+    body: '여러 브랜치를 병합하다 충돌과 함께 의도하지 않은 커밋 상태가 만들어졌습니다. 충돌 파일만 고쳐서는 이전 상태로 돌아갈 수 없어, git reflog로 HEAD가 움직인 이력을 따라가며 병합 직전의 정상 커밋을 찾았습니다. 그 시점으로 작업 상태를 되돌린 뒤 브랜치를 정리하고, 팀원들의 변경사항을 다시 확인하며 병합했습니다.',
   },
   {
-    tag: '에러 처리',
+    tag: 'Data Consistency',
+    title: '동시에 예매하면 좌석 수가 어긋날 수 있던 문제',
+    body: '잔여 좌석을 읽고 그 값을 빼서 다시 쓰는 방식이면, 두 사람이 동시에 예매할 때 한쪽의 감소가 덮어써질 수 있었습니다. Firestore Transaction 안에서 최신 값을 다시 읽고 감소시키도록 바꾸고, 예약 인원이 잔여 좌석보다 많은 경우를 먼저 막았습니다.',
+  },
+  {
+    tag: 'Error Handling',
     title: '장애 원인이 화면에서 구분되지 않던 문제',
     body: '백엔드 콜드스타트로 첫 응답이 수십 초까지 지연되는 환경에서, 비밀번호 오류와 네트워크 타임아웃이 같은 문구로 표시됐습니다. 응답 status가 없는 경우와 서버가 반환한 오류를 나눠 안내하도록 분기하고, 그 로직을 순수 함수로 분리해 테스트로 고정했습니다.',
   },
@@ -95,9 +108,9 @@ export default function PortfolioPage() {
             style={{ animationDelay: '0.16s' }}
             className="rise mt-7 max-w-[38rem] text-[17px] leading-[1.75] text-[#4E5968]"
           >
-            안녕하세요, 신혜원입니다. 기능이 되는 것만큼 <strong className="font-semibold text-[#191F28]">안 될 때 무슨 일이
-            일어나는지</strong>를 중요하게 생각합니다. 응답이 늦을 때와 입력이 틀렸을 때를 사용자가 구분할 수 없다면,
-            그 화면은 동작하지 않는 것과 같다고 봅니다.
+            React와 TypeScript로 웹을 만듭니다. 화면이 잘 될 때만큼{' '}
+            <strong className="font-semibold text-[#191F28]">네트워크가 끊기거나 저장된 상태가 서버와 어긋났을 때</strong>{' '}
+            어떻게 동작할지를 같이 설계하는 편입니다. 최근에는 그런 처리를 테스트로 고정하는 데 관심이 있습니다.
           </p>
 
           <div style={{ animationDelay: '0.24s' }} className="rise mt-9 flex flex-wrap gap-2.5">
@@ -115,7 +128,7 @@ export default function PortfolioPage() {
             <motion.a
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.97 }}
-              href="mailto:lime040909@gmail.com"
+              href="mailto:hwkong7_@naver.com"
               className="print-url inline-flex items-center gap-2 rounded-xl bg-[#F2F4F6] px-5 py-3 text-[15px] font-semibold text-[#4E5968]"
             >
               <Mail className="h-4 w-4" aria-hidden="true" /> 이메일
@@ -124,7 +137,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* 일하는 방식 */}
-        <Section id="values" eyebrow="일하는 방식" title="이런 기준으로 개발합니다">
+        <Section id="values" eyebrow="How I Work" title="이런 기준으로 개발합니다">
           <div className="grid gap-3 sm:grid-cols-2">
             {values.map((v, i) => (
               <div
@@ -132,7 +145,10 @@ export default function PortfolioPage() {
                 style={{ animationDelay: `${i * 0.06}s` }}
                 className="rise rise-scroll print-block rounded-2xl bg-[#F9FAFB] p-7"
               >
-                <v.icon className="h-5 w-5 text-[#3182F6]" aria-hidden="true" />
+                <div className={`inline-flex items-center gap-2 rounded-lg px-2.5 py-1.5 ${v.tone}`}>
+                  <v.icon className="h-4 w-4" aria-hidden="true" />
+                  <span className="text-[12px] font-bold tracking-wide">{v.label}</span>
+                </div>
                 <h3 className="mt-4 text-[17px] font-bold tracking-tight">{v.title}</h3>
                 <p className="mt-2.5 text-[15px] leading-[1.7] text-[#4E5968]">{v.desc}</p>
               </div>
@@ -141,7 +157,7 @@ export default function PortfolioPage() {
         </Section>
 
         {/* 프로젝트 */}
-        <Section id="projects" eyebrow="프로젝트" title="만든 것들">
+        <Section id="projects" eyebrow="Projects" title="만든 것들">
           <p className="print-hidden -mt-4 mb-6 text-[15px] text-[#8B95A1]">
             카드를 누르면 맡은 역할과 문제 해결 과정을 볼 수 있어요.
           </p>
@@ -223,7 +239,7 @@ export default function PortfolioPage() {
         </Section>
 
         {/* 문제 해결 기록 */}
-        <Section id="logs" eyebrow="문제 해결" title="막혔던 순간들">
+        <Section id="logs" eyebrow="Troubleshooting" title="막혔던 순간들">
           <div className="space-y-3">
             {logs.map((l, i) => (
               <div
@@ -315,7 +331,7 @@ export default function PortfolioPage() {
       )}
 
       <footer className="print-hidden border-t border-[#F2F4F6] py-10 text-center text-[13px] text-[#8B95A1]">
-        신혜원 · lime040909@gmail.com
+        신혜원 · hwkong7_@naver.com
       </footer>
     </div>
   );
