@@ -58,7 +58,7 @@ export const projects: Project[] = [
     badge: '교내 해커톤 1위',
     techStack: ['React Native (Expo)', 'TypeScript', 'Supabase'],
     summary: '재화가 이동하는 갈등 중재/베팅 정산 플랫폼으로 결제 정산 로직의 안전성 확보에 집중한 프로젝트',
-    role: '프론트엔드 / 백엔드 (4인 팀)',
+    role: '프론트엔드 중심, 백엔드 일부 병행 (4인 팀) — 화면 구현과 함께 베팅·정산 등 쓰기 로직을 서버 RPC로 작성',
     details: [
       '베팅 및 정산 등 쓰기 작업을 13개 서버 RPC로 분리하고, 잔액 검증과 차감을 단일 트랜잭션으로 처리해 재화 일관성 확보',
       'PENDING → OPEN → SETTLED / REJECTED 4단계 도메인 상태 분기 처리',
@@ -180,7 +180,8 @@ export const projects: Project[] = [
       '파일 삭제·이동 후 화면이 실제 파일 상태와 어긋나던 문제를, 작업 성공 후 목록을 다시 조회해 갱신하도록 수정',
       '경로를 문자열로 직접 이어 붙이다 구분자와 공백 때문에 파일을 찾지 못하던 문제를 path 모듈 사용으로 해결',
       '화면 표시용 데이터(썸네일·이름)와 파일 작업용 원본 경로를 한 구조에서 구분해 관리',
-      'electron-builder 진입점 경로 불일치로 빌드가 실패하던 문제를 오류 로그를 따라가며 해결'
+      'electron-builder 진입점 경로 불일치로 빌드가 실패하던 문제를 오류 로그를 따라가며 해결',
+      '사진 정리에서 범위를 넓혀, 흩어진 로컬 데이터를 분석하고 안전하게 정리하도록 돕는 Digital Cleanup Assistant 방향으로 2.0을 준비 중'
     ],
     troubleshooting: [
       {
