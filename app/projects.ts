@@ -12,12 +12,17 @@ export interface Project {
   troubleshooting?: { title: string; desc: string }[];
   githubUrl?: string;
   liveUrl?: string;
+  /** 카드 커버 이미지 (public 기준 경로) */
+  image?: string;
+  /** 커버 이미지가 없을 때 쓰는 배경 */
+  cover?: string;
 }
 
 export const projects: Project[] = [
   {
     id: 'cve-poc-scanner',
     title: 'CVE-PoC-Scanner',
+    cover: 'from-[#E8F3FF] to-[#D6E9FF]',
     subtitle: 'CVE 기반 웹 취약점 자동 진단 도구',
     category: 'Capstone Design',
     period: '2026.03 – 2026.06',
@@ -44,6 +49,7 @@ export const projects: Project[] = [
   {
     id: 'pansa',
     title: 'PANSA',
+    cover: 'from-[#F3F1FF] to-[#E7E2FF]',
     subtitle: '익명 갈등 중재 및 정산 모바일 앱',
     category: 'Mobile App',
     period: '2026.07 (9일)',
@@ -88,11 +94,13 @@ export const projects: Project[] = [
         desc: '여정 ID를 localStorage에 저장해 새로고침에도 유지되게 했으나, 서버에서 해당 여정이 사라지면 조회가 계속 실패해 사용자에게는 앱이 멈춘 것처럼 보였습니다. 조회 실패를 감지해 저장된 ID를 비우고 첫 화면으로 되돌려, 사용자가 스스로 복구할 수 있는 흐름으로 만들었습니다. 로컬에 상태를 들고 있는 환경이라면 어디서든 생길 수 있는 문제라고 보고 있습니다.'
       }
     ],
+    image: '/projects/mcm-nomad.png',
     githubUrl: 'https://github.com/hwkong7/mcm-nomad-frontend'
   },
   {
     id: 'kgv',
     title: 'KGV (CGV 클론)',
+    cover: 'from-[#FFF1F0] to-[#FFE0DE]',
     subtitle: '영화 예매 및 좌석 관리 모바일 앱',
     category: 'Mobile App',
     period: '2025.09 – 2025.12',
@@ -123,6 +131,7 @@ export const projects: Project[] = [
   {
     id: 'gift-picker',
     title: 'Gift Picker',
+    cover: 'from-[#FFF6E5] to-[#FFEAC2]',
     subtitle: '선물 추천 웹 서비스',
     category: 'Web Application',
     period: '개인 프로젝트',
@@ -146,6 +155,7 @@ export const projects: Project[] = [
   {
     id: 'snaptidy',
     title: 'SnapTidy',
+    cover: 'from-[#EDF9F0] to-[#D8F2E2]',
     subtitle: '이미지 정리 데스크톱 애플리케이션',
     category: 'Desktop App / Open Source',
     period: '개인 프로젝트',

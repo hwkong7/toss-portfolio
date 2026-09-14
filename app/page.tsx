@@ -2,7 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Bug, Layers, FileText, FlaskConical, ArrowUpRight, X } from 'lucide-react';
+import { Bug, Layers, FileText, FlaskConical, ArrowUpRight, X, Copy, Check } from 'lucide-react';
+import Image from 'next/image';
+
+const EMAIL = 'hwkong7_@naver.com';
 import { projects, type Project } from './projects';
 
 const values = [
@@ -125,14 +128,7 @@ export default function PortfolioPage() {
               <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" /></svg>
               GitHub
             </motion.a>
-            <motion.a
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              href="mailto:hwkong7_@naver.com"
-              className="print-url inline-flex items-center gap-2 rounded-xl bg-[#F2F4F6] px-5 py-3 text-[15px] font-semibold text-[#4E5968]"
-            >
-              <Mail className="h-4 w-4" aria-hidden="true" /> 이메일
-            </motion.a>
+            <CopyEmail />
           </div>
         </section>
 
@@ -172,6 +168,24 @@ export default function PortfolioPage() {
                 style={{ animationDelay: `${i * 0.05}s` }}
                 className="rise rise-scroll group flex w-full flex-col rounded-2xl bg-white p-7 text-left shadow-[0_1px_3px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.04)] transition-[box-shadow,transform] duration-200 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.10)] active:translate-y-0 active:scale-[0.985] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3182F6] focus-visible:ring-offset-2"
               >
+                <div className="print-hidden relative -mx-7 -mt-7 mb-6 h-[150px] overflow-hidden rounded-t-2xl">
+                  {p.image ? (
+                    <Image
+                      src={p.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) 100vw, 420px"
+                      className="object-cover object-center transition-transform duration-300 group-hover:scale-[1.04]"
+                    />
+                  ) : (
+                    <div className={`h-full w-full bg-gradient-to-br ${p.cover ?? 'from-[#F2F4F6] to-[#E5E8EB]'}`}>
+                      <span className="absolute bottom-4 left-6 text-[52px] font-extrabold leading-none text-white/70">
+                        {p.title.charAt(0)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
                 {p.badge && (
                   <span className="mb-3 self-start rounded-md bg-[#E8F3FF] px-2 py-1 text-[12px] font-bold text-[#3182F6]">
                     {p.badge}
@@ -210,6 +224,9 @@ export default function PortfolioPage() {
                   {p.badge ? ` · ${p.badge}` : ''}
                 </p>
                 <p className="mt-2 text-[13px] leading-[1.7] text-[#191F28]">{p.summary}</p>
+                {p.image && (
+                  <img src={p.image} alt="" className="mt-3 w-full rounded-lg border border-[#E5E8EB]" />
+                )}
                 <p className="mt-2 text-[12px] text-[#4E5968]">
                   <span className="font-bold">담당 역할 </span>
                   {p.role}
@@ -279,6 +296,12 @@ export default function PortfolioPage() {
             >
               <X className="h-5 w-5" />
             </button>
+
+            {selected.image && (
+              <div className="relative -mx-7 -mt-7 mb-6 h-[220px] overflow-hidden rounded-t-3xl">
+                <Image src={selected.image} alt="" fill sizes="576px" className="object-cover object-center" />
+              </div>
+            )}
 
             {selected.badge && (
               <span className="inline-block rounded-md bg-[#E8F3FF] px-2 py-1 text-[12px] font-bold text-[#3182F6]">
@@ -357,5 +380,48 @@ function Section({
       </div>
       {children}
     </section>
+  );
+}
+
+/** 메일 앱이 없어도 주소를 바로 쓸 수 있도록 복사 버튼으로 제공한다 */
+function CopyEmail() {
+  const [copied, setCopied] = useState(false);
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      // 클립보드가 막힌 환경에서는 메일 앱으로 넘긴다
+      window.location.href = `mailto:${EMAIL}`;
+    }
+  };
+
+  return (
+    <span className="inline-flex items-center gap-1 rounded-xl bg-[#F2F4F6] p-1">
+      <button
+        type="button"
+        onClick={copy}
+        aria-label={`이메일 주소 ${EMAIL} 복사하기`}
+        className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-[15px] font-semibold text-[#4E5968] transition-colors hover:bg-white active:scale-[0.98]"
+      >
+        {copied ? (
+          <Check className="h-4 w-4 text-[#12A66B]" aria-hidden="true" />
+        ) : (
+          <Copy className="h-4 w-4" aria-hidden="true" />
+        )}
+        {EMAIL}
+      </button>
+      <a
+        href={`mailto:${EMAIL}`}
+        className="print-hidden rounded-lg px-3 py-2 text-[14px] font-semibold text-[#8B95A1] transition-colors hover:bg-white hover:text-[#4E5968]"
+      >
+        메일 쓰기
+      </a>
+      <span aria-live="polite" className="sr-only">
+        {copied ? '이메일 주소를 복사했습니다' : ''}
+      </span>
+    </span>
   );
 }
