@@ -95,8 +95,9 @@ export default function PortfolioPage() {
 
       <main className="mx-auto max-w-4xl px-6 pb-24">
         {/* 소개 */}
-        <section id="about" className="print-block py-20 sm:py-28">
-          <p className="rise text-[15px] font-semibold text-[#3182F6]">프론트엔드 개발자</p>
+        <section id="about" className="print-block grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+          <p className="rise text-[15px] font-semibold text-[#3182F6]">Frontend Developer</p>
 
           <h1
             style={{ animationDelay: '0.08s' }}
@@ -129,6 +130,11 @@ export default function PortfolioPage() {
               GitHub
             </motion.a>
             <CopyEmail />
+          </div>
+          </div>
+
+          <div style={{ animationDelay: '0.3s' }} className="rise print-block">
+            <StateSyncArt />
           </div>
         </section>
 
@@ -373,7 +379,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="py-14 sm:py-20">
+    <section id={id} className="border-t border-[#F2F4F6] py-14 sm:py-20">
       <div className="rise rise-scroll mb-8">
         <p className="text-[14px] font-semibold text-[#3182F6]">{eyebrow}</p>
         <h2 className="mt-2 text-[28px] font-extrabold tracking-[-0.02em] sm:text-[32px]">{title}</h2>
@@ -423,5 +429,60 @@ function CopyEmail() {
         {copied ? '이메일 주소를 복사했습니다' : ''}
       </span>
     </span>
+  );
+}
+
+/**
+ * 소개 영역 표지.
+ * 저장된 상태가 서버와 어긋났을 때 첫 화면으로 되돌리는 흐름을 도식으로 그렸다.
+ * 장식이면서 동시에 아래 프로젝트에서 반복되는 주제를 미리 보여주는 역할을 한다.
+ */
+function StateSyncArt() {
+  return (
+    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#F4F8FF] via-[#EEF4FF] to-[#F7F3FF] p-8">
+      <svg viewBox="0 0 340 260" className="h-auto w-full" role="img" aria-label="저장된 상태와 서버 상태가 어긋났을 때 첫 화면으로 복구되는 흐름 도식">
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+            <path d="M0 0 L8 4 L0 8 z" fill="#B0C4E4" />
+          </marker>
+        </defs>
+
+        {/* 로컬 */}
+        <rect x="14" y="26" width="132" height="86" rx="16" fill="#fff" />
+        <text x="32" y="54" fontSize="12" fontWeight="700" fill="#8B95A1">저장된 상태</text>
+        <rect x="32" y="66" width="76" height="9" rx="4.5" fill="#D9E5F7" />
+        <rect x="32" y="83" width="52" height="9" rx="4.5" fill="#E8EEF7" />
+
+        {/* 서버 */}
+        <rect x="194" y="26" width="132" height="86" rx="16" fill="#fff" />
+        <text x="212" y="54" fontSize="12" fontWeight="700" fill="#8B95A1">서버 상태</text>
+        <rect x="212" y="66" width="60" height="9" rx="4.5" fill="#E8EEF7" />
+        <rect x="212" y="83" width="80" height="9" rx="4.5" fill="#E8EEF7" />
+
+        {/* 어긋남 */}
+        <line x1="152" y1="69" x2="188" y2="69" stroke="#B0C4E4" strokeWidth="2" strokeDasharray="5 5" />
+        <circle cx="170" cy="69" r="13" fill="#fff" />
+        <path d="M170 62 v8" stroke="#F04452" strokeWidth="2.4" strokeLinecap="round" />
+        <circle cx="170" cy="75.5" r="1.5" fill="#F04452" />
+
+        {/* 복구 화살표 */}
+        <path
+          d="M80 120 V150 Q80 166 96 166 H244 Q260 166 260 150 V120"
+          fill="none"
+          stroke="#B0C4E4"
+          strokeWidth="2"
+          markerEnd="url(#arrow)"
+        />
+
+        {/* 복구 결과 */}
+        <rect x="60" y="186" width="220" height="54" rx="16" fill="#3182F6" />
+        <text x="170" y="210" fontSize="13" fontWeight="700" fill="#fff" textAnchor="middle">
+          첫 화면으로 되돌리기
+        </text>
+        <text x="170" y="228" fontSize="11" fill="#CFE0FF" textAnchor="middle">
+          사용자가 스스로 복구할 수 있게
+        </text>
+      </svg>
+    </div>
   );
 }
