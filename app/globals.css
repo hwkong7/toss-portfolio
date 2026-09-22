@@ -1,28 +1,85 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---- 색상 토큰 ----
+   화면 곳곳의 색을 역할 이름으로 묶어, 라이트/다크를 이 블록에서만 바꾼다. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #ffffff;
+  --card: #ffffff;
+  --muted: #f9fafb;
+  --chip: #f2f4f6;
+  --line: #f2f4f6;
+  --fg: #191f28;
+  --fg2: #4e5968;
+  --fg3: #8b95a1;
+  --fg4: #c4cbd3;
+  --accent: #3182f6;
+  --accent-soft: #e8f3ff;
+  --accent-softer: #f4f8ff;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #101216;
+  --card: #1a1d23;
+  --muted: #16191e;
+  --chip: #262a31;
+  --line: #22262d;
+  --fg: #f2f4f6;
+  --fg2: #b0b8c1;
+  --fg3: #7e8894;
+  --fg4: #4e5968;
+  --accent: #4d94ff;
+  --accent-soft: #1a2c47;
+  --accent-softer: #151f30;
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-chip: var(--chip);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-fg2: var(--fg2);
+  --color-fg3: var(--fg3);
+  --color-fg4: var(--fg4);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-softer: var(--accent-softer);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg);
+  color: var(--fg);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 테마를 바꾸는 순간에만 색을 부드럽게 전환한다 (평소에는 transition 비용을 쓰지 않음) */
+.theme-switching,
+.theme-switching * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* ---- 기술 띠 ---- */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
 }
 
 /* ---- 인쇄(PDF 제출용) ---- */
@@ -41,6 +98,22 @@ body {
   html,
   body {
     background: #ffffff !important;
+  }
+
+  /* 다크모드로 보고 있어도 PDF는 항상 밝은 색으로 */
+  .dark {
+    --bg: #ffffff;
+    --card: #ffffff;
+    --muted: #f9fafb;
+    --chip: #f2f4f6;
+    --line: #f2f4f6;
+    --fg: #191f28;
+    --fg2: #4e5968;
+    --fg3: #8b95a1;
+    --fg4: #c4cbd3;
+    --accent: #3182f6;
+    --accent-soft: #e8f3ff;
+    --accent-softer: #f4f8ff;
   }
 
   /* 화면 전용 요소 숨김 */
@@ -129,8 +202,12 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .rise,
-  .rise-scroll {
+  .rise-scroll,
+  .marquee {
     animation: none;
     opacity: 1;
     transform: none;
@@ -138,8 +215,9 @@ body {
 }
 
 /* 어떤 요소가 넘치더라도 페이지가 옆으로 밀리지 않게 한다 */
+/* hidden은 body를 스크롤 컨테이너로 만들어 sticky 헤더와 스크롤 진행률을 깨뜨리므로 clip을 쓴다 */
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }

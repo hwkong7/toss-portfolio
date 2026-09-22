@@ -28,7 +28,7 @@ export const projects: Project[] = [
     category: 'Capstone Design',
     period: '2026.03 – 2026.06',
     badge: '학술대회 논문 게재 (제2저자)',
-    techStack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'FastAPI', 'MySQL'],
+    techStack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'React Router', 'FastAPI', 'MySQL'],
     summary: 'CVE와 OWASP Top 10 기반 PoC를 실제로 실행해 취약점 재현 여부를 검증하는 진단 시스템. 4인 팀 프로젝트로 진행했고 결과를 학술대회 논문으로 게재',
     role: '프론트엔드 UI/UX 구현, 상태 관리 로직 설계, 데이터 전송 구조 설계서 작성',
     details: [
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     category: 'Mobile App',
     period: '2026.06 – 2026.07',
     badge: '교내 해커톤 1위',
-    techStack: ['React Native (Expo)', 'TypeScript', 'Supabase'],
+    techStack: ['React Native (Expo)', 'TypeScript', 'Supabase', 'React Navigation'],
     summary: '재화가 이동하는 갈등 중재/베팅 정산 플랫폼으로 결제 정산 로직의 안전성 확보에 집중한 프로젝트',
     role: '프론트엔드 중심, 백엔드 일부 병행 (4인 팀) — 화면 구현과 함께 베팅·정산 등 쓰기 로직을 서버 RPC로 작성',
     details: [
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     subtitle: '공항 면세 쇼핑 및 여정 통합 웹 앱',
     category: 'Web Application',
     period: '2026.08.09 – 08.22',
-    techStack: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS', 'React-Query', 'Zustand'],
+    techStack: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS', 'React-Query', 'Zustand', 'Vitest'],
     summary: '인증, 출발 전, 공항, 도착 후, 마이페이지 등 5개 영역 30여 개 화면을 통합한 웹 앱. 4인 팀에서 인증 화면과 공통 로딩·에러 처리를 맡았습니다',
     role: '프론트엔드 개발 (인증 화면 전담, 공통 로딩·에러 처리, 상태 복구)',
     details: [
@@ -107,7 +107,7 @@ export const projects: Project[] = [
     subtitle: '영화 예매 및 좌석 관리 모바일 앱',
     category: 'Mobile App',
     period: '2025.09 – 2025.12',
-    techStack: ['Flutter', 'Firebase', '외부 API 4종'],
+    techStack: ['Flutter', 'Firebase', 'Naver Maps API', 'KOBIS API', '서울 열린데이터 API', 'Google Calendar API'],
     summary: '상영 시간 조회부터 관람 인원 선택, 좌석 예매, 결제까지 이어지는 예매 플로우를 구현한 4인 팀 프로젝트',
     role: '프론트엔드 (회원가입/로그인, 관람 인원 선택, 좌석 예매, 미니맵, 쿠폰, 외부 API 연동)',
     details: [
@@ -139,7 +139,7 @@ export const projects: Project[] = [
     subtitle: '선물 추천 웹 서비스',
     category: 'Web Application',
     period: '개인 프로젝트',
-    techStack: ['React 19', 'TypeScript', 'Vite', 'Vercel Functions', 'Supabase'],
+    techStack: ['React 19', 'TypeScript', 'Vite', 'Vercel Functions', 'Supabase', 'Gemini API', 'SerpApi'],
     summary: '요정 캐릭터가 질문을 건네며 원하는 선물을 찾아주는 웹 서비스. 사용하던 쇼핑 API의 서비스 종료로 기능이 중단되자 대체 데이터 소스로 옮기고, 호출 비용과 응답 지연까지 함께 개선했습니다',
     role: '1인 단독 개발 (기획, 프론트엔드, 서버리스 API, 배포)',
     details: [
