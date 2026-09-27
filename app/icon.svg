@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="신혜원 포트폴리오">
+  <rect width="64" height="64" rx="15" fill="#3182F6" />
+  <!-- 이니셜 H: 글꼴에 의존하지 않도록 사각형으로 그린다 -->
+  <rect x="17" y="17" width="7" height="30" rx="3.5" fill="#fff" />
+  <rect x="40" y="17" width="7" height="30" rx="3.5" fill="#fff" />
+  <rect x="17" y="28.5" width="30" height="7" rx="3.5" fill="#fff" />
+</svg>
